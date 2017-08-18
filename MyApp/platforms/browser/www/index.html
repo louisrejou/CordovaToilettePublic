@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Security-Policy" content=" style-src 'self' 'unsafe-inline'; media-src *;">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+
+        <script type="text/javascript" src="http://data.bordeaux-metropole.fr/API/cub.xjs?key=NBK5WG5MO7"></script>
+        <script type="text/javascript">
+      		CUB.ready(function() {
+      			CUB.init('Carte');
+            var statique = new CUB.Layer.Static('Ma couche statique', 'http://data.bordeaux-metropole.fr/wms?key=NBK5WG5MO7', ['TB_PARCR_P']);
+            new CUB.Layer.Background('Mon arrière-plan', CUB.Layer.Background.layerType.OPENSTREETMAP);
+            var color = CUB.Color.fromRGB(255, 255, 255);
+            var dynamique = new CUB.Layer.Dynamic('Ma couche dynamique', 'toilette.kml',{ selectable: true});
+      		});
+      	</script>
+    </head>
+    <body>
+        <div style="margin-top:10px">
+          <div>
+            <p>
+              <h1>Toilette publiques</h1>
+              <h4 style="text-align: center">Bordeaux</h4>
+            </p>
+
+            <!-- Div de la carte -->
+            <div id="Carte" style="height:512px; border: 1px solid black"></div>
+            <br/><br/><br/><br/>
+            <div style="margin-left:10px">
+              <button style="height:40px;color:white;background-color:#4CAF50;border:none;font-size: 20px;border-radius: 4px;" onclick="CUB.moveToPoint(new CUB.Position(1417626, 4189068));" type="submit">Recentrer la carte</button>
+            </div>
+          </div>
+        </div>
+    </body>
+</html>
